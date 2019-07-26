@@ -29,3 +29,6 @@ But in fact, when pyargs is specified in the configuration file, testpaths in th
 
 Adding directories to addopts instead of testpaths naturally works just like adding them on the command line: in that case, tests are run both from the pyargs package and from the specified directories.
 
+However, while that makes addopts a workaround, it is undesirable because any directories specified in addopts are *always* run, even if a single test is specified on the command line such as `pytest testdir1/test_1.py::test_1`. This is one of the use-cases for using testpaths (https://github.com/pytest-dev/pytest/issues/868).
+
+But it appears that by putting addopts *before* testpaths, it just works.
